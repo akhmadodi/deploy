@@ -35,6 +35,7 @@ class BankAccountsController extends Controller
                 'message' => 'Nomor Rekening sudah terdaftar'
             )], $this->successStatus);
         }
+        $input['id'] = BankAccount::latest('id')->first()->id + 1;
         $query = BankAccount::create($input); 
         return response()->json([
             'data' => $query

@@ -14,13 +14,14 @@ class CreatePicsTable extends Migration
     public function up()
     {
         Schema::create('pics', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigInteger('id');
             $table->string('name');
             $table->string('phone')->nullable();
             $table->string('email')->nullable();
             $table->string('uid');
             $table->date('dob')->nullable();
             $table->timestamps();
+            $table->primary('id');
         });
     }
 

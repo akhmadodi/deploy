@@ -31,17 +31,19 @@ class PicsController extends Controller
         }
         $input = $request->all(); 
         $input['uid'] = uniqid();
+        $input['id'] = Pic::latest('id')->first()->id + 1;
         $q = Pic::where('email', $input['email'])->orWhere('email', $input['email']);
         if ($q->count() > 0) {
             return response()->json(['error' => array(
                 'message' => 'Nomor hp atau email sudah terdaftar'
             )], 401);
         }
-        $query = Pic::create($input); 
+        $query = Pic::create($input);
 
         if ($input['bank_accounts']) {
 			foreach ($input['bank_accounts'] as $val) {
-				$pic_bank_accounts = new PicBankAccount;
+                $pic_bank_accounts = new PicBankAccount;
+                $pic_bank_accounts->id = PicBankAccount::latest('id')->first()->id + 1;
 				$pic_bank_accounts->pic_id = $query->id;
 				$pic_bank_accounts->bank_account_id = $val['id'];
 				$pic_bank_accounts->save();

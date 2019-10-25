@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class PicBankAccount extends Model
 {
-    protected $fillable = ['pic_id', 'bank_account_id'];
+    protected $fillable = ['id', 'pic_id', 'bank_account_id'];
     public $timestamps = false;
 
     public function bank_account_info()

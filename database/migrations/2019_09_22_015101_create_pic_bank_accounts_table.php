@@ -14,11 +14,12 @@ class CreatePicBankAccountsTable extends Migration
     public function up()
     {
         Schema::create('pic_bank_accounts', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigInteger('id');
             $table->integer('pic_id');
             $table->integer('bank_account_id');
             $table->unique(['pic_id', 'bank_account_id']);
             $table->timestamps();
+            $table->primary('id');
         });
     }
 
